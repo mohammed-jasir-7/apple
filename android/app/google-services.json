@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "632496812248",
+    "project_id": "apple-c4200",
+    "storage_bucket": "apple-c4200.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632496812248:android:f52b7cdb18ce91d39127ad",
+        "android_client_info": {
+          "package_name": "com.apple.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR2PgU7Z7mcAdOy5lsHOB5IxWbU8b3DTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
