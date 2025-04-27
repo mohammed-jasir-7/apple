@@ -3,6 +3,7 @@ import 'package:apple/core/widgets/text_widget.dart';
 import 'package:apple/features/authentication/presentation/provider/auth_provider.dart';
 import 'package:apple/features/skeleton/presentation/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,20 @@ class ProfileMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Profile")),
+      appBar: AppBar(title:  TextWidget( text: "Profile",
+      size: 20.sp, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.onSurface,
+      ),centerTitle: true,
+      actions: [
+        IconButton(
+          icon:  Icon(Icons.power_settings_new_rounded, size: 28.sp, color: Colors.red),
+          onPressed: () {
+           /// Handle logout action here
+           HapticFeedback.lightImpact();
+            _logoutConformation(context);
+          },
+        ),
+      ],
+      ),
       body: Padding(
         padding: EdgeInsets.all(16.0.w),
         child: SingleChildScrollView(
@@ -22,7 +36,12 @@ class ProfileMobile extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    const ProfileAvatar(), // Custom Avatar Widget
+                    SizedBox(
+  width: 120.w,
+  height: 120.h,
+  child: const ProfileAvatar(),
+)
+                 ,
                     const SizedBox(height: 10),
                     TextWidget(
                     text:   context.read<AuthProvider>().user?.displayName??"",
@@ -91,6 +110,33 @@ class ProfileMobile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<dynamic> _logoutConformation(BuildContext context) {
+    return showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text("Logout"),
+                content: const Text("Are you sure you want to logout?"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Close the dialog
+                    },
+                    child: const Text("Cancel"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      context.read<AuthProvider>().signOut();
+                      Navigator.of(context).pop(); // Close the dialog
+                    },
+                    child: const Text("Logout"),
+                  ),
+                ],
+              );
+            },
+          );
   }
    Widget _buildMenuItem(BuildContext context, IconData icon, String title) {
     return ListTile(

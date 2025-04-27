@@ -31,6 +31,7 @@ class HomeProvider extends ChangeNotifier {
 
   Future<void> fetchProducts() async {
     _isLoading = true;
+    notifyListeners();
     // Simulate a network call to fetch products
     final result = await _getProducts();
     result.fold(

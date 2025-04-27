@@ -24,12 +24,13 @@ class SignInMobile extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(logoPath, width: 80.w, height: 80.h),
+                Image.asset(logoPath, width: 60.w, height: 60.h),
                 SizedBox(width: 10.w),
                 TextWidget(
                   text: kAppName,
-                  size: 40.sp,
+                  size: 45.sp,
                   fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ],
             ),
@@ -68,6 +69,7 @@ class SignInMobile extends StatelessWidget {
                           text: 'Sign in with Google',
                           size: 18.sp,
                           fontWeight: FontWeight.w600,
+                          color: Theme.of(context).colorScheme.onSurface,
                           
                         ),
                       ],
