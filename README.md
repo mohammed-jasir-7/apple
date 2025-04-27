@@ -1,4 +1,6 @@
-# 📱 Apple
+# 📱 Apple - Flutter Application
+Version: 1.0.0
+Platform: Android, iOS
 
 Apple is a Flutter-based application designed to display iPhone product listings with advanced UI components, Google authentication, and PDF generation for product details. This app follows **Clean Architecture**, ensuring modularity, scalability, and maintainability.
 
@@ -46,6 +48,13 @@ lib/
 │   ├── themes/                # Dark/light mode implementation
 │   └── common_widgets/        # Custom UI components
 
+
+## 🌐 API Integration
+Mocky API Details
+Base API URL:
+
+sh
+https://run.mocky.io/v3/9c07478b-4692-44da-b41d-cb
 
 ## 🚀 Installation
 
