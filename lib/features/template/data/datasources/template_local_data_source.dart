@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:apple/core/errors/exceptions.dart';
+
 import '../models/template_model.dart';
 class SharedPreferences{}
 abstract class TemplateLocalDataSource {
@@ -17,7 +17,7 @@ class TemplateLocalDataSourceImpl implements TemplateLocalDataSource {
 
   @override
   Future<TemplateModel> getLastTemplate() {
-    final jsonString = 'sharedPreferences';
+    const jsonString = 'sharedPreferences';
 
     return Future.value(TemplateModel.fromJson(json: json.decode(jsonString)));
     }
