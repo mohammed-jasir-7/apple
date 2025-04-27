@@ -13,7 +13,7 @@ class TemplateRemoteDataSourceImpl implements TemplateRemoteDataSource {
 
   @override
   Future<TemplateModel> getTemplate({required TemplateParams templateParams}) async {
-     final response ="jj";
+     const response =200;
     // await dio.get(
     //   'https://pokeapi.co/api/v2/pokemon/',
     //   queryParameters: {
