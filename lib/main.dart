@@ -1,38 +1,87 @@
+import 'package:apple/core/constants/constants.dart';
+import 'package:apple/core/route/route_genrator.dart';
+import 'package:apple/core/themes/theme.dart';
+import 'package:apple/features/authentication/presentation/provider/auth_provider.dart';
+import 'package:apple/features/home/presentation/provider/home_provider.dart';
+import 'package:apple/features/pdf/presentation/provider/pdf_provider.dart';
+import 'package:apple/features/skeleton/presentation/provider/theme_provider.dart';
+import 'package:apple/firebase_options.dart';
+import 'package:apple/injectable.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+
+void main() async{
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  String mode = Environment.prod; /// Defines the app environment (prod, dev, test).
+ await Firebase.initializeApp(
+       options: DefaultFirebaseOptions.currentPlatform,
+    );
+ FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);// Locks the app orientation to portrait mode.
+  //initialize the injectable
+   await configureDependencies(mode);
+   bool isSignedIn = await GoogleSignIn().isSignedIn();
+   //check login status
+  // final isLoggedIn = await getIt<SharedPreferences>().getBool(kIsLoggedIn) ?? false;
+  runApp( MyApp(isSignedIn: isSignedIn,));
 }
 
 final GlobalKey<NavigatorState> navigatorState = GlobalKey<NavigatorState>();
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key, required this.isSignedIn});
+final bool isSignedIn ;
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
+  void initState() {
+    FlutterNativeSplash.remove();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return  ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MultiProvider(
+          providers: [
+            //Add your providers here
+             ChangeNotifierProvider(create: (_) => getIt<ThemeProvider>()),
+             ChangeNotifierProvider(create: (_) => getIt<AuthProvider>()),
+              ChangeNotifierProvider(create: (_) => getIt<HomeProvider>()),
+              ChangeNotifierProvider(create: (_) => getIt<PdfProvider>()),
+          ],
+          builder: (context, child) {
+            final themeProvider = Provider.of<ThemeProvider>(context);
+            return MaterialApp(
+              navigatorKey: navigatorState,
+
+              debugShowCheckedModeBanner: false,
+              title: kAppName,
+              theme: lightMode,
+              darkTheme: darkMode,
+              themeMode: themeProvider.themeMode, // Use system theme mode
+            initialRoute:widget.isSignedIn ? '/' : 'signIn',
+               onGenerateRoute: RouteGenerator.generateRoute,
+            );
+          },
+    
+        );
+      },
+     
     );
   }
 }

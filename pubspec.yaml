@@ -9,17 +9,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_lints: ^2.0.0 # Linting rules for Flutter projects
 
   # State Management & Architecture
+  provider: ^6.1.4 # State management solution
   dartz: ^0.10.1 # Functional programming utils
   equatable: ^2.0.5 # Simplifies equality comparisons
   get_it: ^8.0.3 # Dependency injection
   injectable: ^2.3.2 # Code generation for dependency injection
-
+  
   # Networking & API Integration
   http: ^1.2.1 # Handles API requests
   connectivity_plus: ^6.0.3 # Detects internet connection
 
+  # Firebase & Cloud Services
+  firebase_core: ^3.13.0 # Core Firebase services
+  firebase_auth: ^5.5.2 # Authentication services
   # UI Enhancements
   flutter_screenutil: ^5.9.0 # Responsive design
   cached_network_image: ^3.3.1 # Efficient image caching
@@ -27,13 +32,14 @@ dependencies:
   shimmer: ^3.0.0 # Loading animations
   photo_view: ^0.15.0 # Zoomable image viewer
   lottie: ^3.1.3 # Animations support
+  flutter_svg: ^2.0.9 # SVG support
 
   # Fonts & Theme
   google_fonts: ^6.1.0 # Custom fonts
   cupertino_icons: ^1.0.2 # iOS-style icons
   # storage
   shared_preferences: ^2.1.0 # Local storage for key-value pairs
-  
+
   # Authentication & Permissions
   google_sign_in: ^6.2.1 # Google OAuth
   permission_handler: ^12.0.0+1 # Handles user permissions
@@ -45,6 +51,10 @@ dependencies:
   # Miscellaneous Utilities
   flutter_native_splash: ^2.4.3 # Custom splash screen
   readmore: ^3.0.0 # Expandable text widget
+  pdf: ^3.11.3
+  open_file: ^3.5.10 # Opens files with native
+  intl: ^0.20.2 # Internationalization and localization
+  
 
 dev_dependencies:
   flutter_test:
@@ -57,7 +67,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/logo/applogoIcon.png"
+  image_path: "assets/jpg/dark_logo.jpg"
   min_sdk_android: 21 # Sets minimum supported Android version
   adaptive_icon_background: "#ffffff"
 
@@ -67,8 +77,8 @@ flutter:
   assets:
     - assets/svg/
     - assets/png/
-    - assets/logo/
+    #- assets/logo/
     - assets/json/
     - assets/jpg/
-    - shorebird.yaml
+    
 

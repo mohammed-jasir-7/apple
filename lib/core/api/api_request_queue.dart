@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:flutter/material.dart';
+
 
 
 class FunctionApiRequest {
@@ -28,10 +30,10 @@ class ApiQueueImpl implements ApiQueue {
 void addToQueue(FunctionApiRequest request) {
   final isDuplicate = _queue.any((r) => r.id == request.id);
   if (!isDuplicate) {
-    print('Added: ${request.id}');
+    debugPrint('Added: ${request.id}');
     _queue.add(request);
   } else {
-    print('Skipped duplicate: ${request.id}');
+    debugPrint('Skipped duplicate: ${request.id}');
   }
 }
 
