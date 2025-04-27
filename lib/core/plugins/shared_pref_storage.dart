@@ -73,12 +73,12 @@ class SharedPrefStorageImpl implements SharedPrefStorage {
       } else if (value is String) {
         await storage.setString(key, value);
       } else {
-        return Left(LocalStorageFailure(errorMessage: unknownError));
+        return Left(LocalStorageFailure(errorMessage: kunknownError));
       }
       return const Right(true);
     } catch (e) {
       log(e.toString());
-      return Left(LocalStorageFailure(errorMessage: unknownError));
+      return Left(LocalStorageFailure(errorMessage: kunknownError));
     }
   }
 
@@ -92,7 +92,7 @@ class SharedPrefStorageImpl implements SharedPrefStorage {
       return const Right(true);
     } catch (e) {
       log(e.toString());
-      return Left(LocalStorageFailure(errorMessage: unknownError));
+      return Left(LocalStorageFailure(errorMessage: kunknownError));
     }
   }
 
@@ -106,7 +106,7 @@ class SharedPrefStorageImpl implements SharedPrefStorage {
       return const Right(true);
     } catch (e) {
       log(e.toString());
-      return Left(LocalStorageFailure(errorMessage: unknownError));
+      return Left(LocalStorageFailure(errorMessage: kunknownError));
     }
   }
 
@@ -120,7 +120,7 @@ class SharedPrefStorageImpl implements SharedPrefStorage {
       return const Right(true);
     } catch (e) {
       log(e.toString());
-      return Left(LocalStorageFailure(errorMessage: unknownError));
+      return Left(LocalStorageFailure(errorMessage: kunknownError));
     }
   }
 
@@ -134,7 +134,7 @@ class SharedPrefStorageImpl implements SharedPrefStorage {
       return const Right(true);
     } catch (e) {
       log(e.toString());
-      return Left(LocalStorageFailure(errorMessage: unknownError));
+      return Left(LocalStorageFailure(errorMessage: kunknownError));
     }
   }
 
@@ -144,11 +144,11 @@ class SharedPrefStorageImpl implements SharedPrefStorage {
   Future<Either<Failure, bool>> getBool({required String key}) async {
     try {
       var result = storage.getBool(key);
-      if (result == null) return Left(LocalStorageFailure(errorMessage: unknownError));
+      if (result == null) return Left(LocalStorageFailure(errorMessage: kunknownError));
       return Right(result);
     } catch (e) {
       log(e.toString());
-      return Left(LocalStorageFailure(errorMessage: unknownError));
+      return Left(LocalStorageFailure(errorMessage: kunknownError));
     }
   }
 
@@ -158,11 +158,11 @@ class SharedPrefStorageImpl implements SharedPrefStorage {
   Future<Either<Failure, double>> getDouble({required String key}) async {
     try {
       var result = storage.getDouble(key);
-      if (result == null) return Left(LocalStorageFailure(errorMessage: unknownError));
+      if (result == null) return Left(LocalStorageFailure(errorMessage: kunknownError));
       return Right(result);
     } catch (e) {
       log(e.toString());
-      return Left(LocalStorageFailure(errorMessage: unknownError));
+      return Left(LocalStorageFailure(errorMessage: kunknownError));
     }
   }
 
@@ -172,11 +172,11 @@ class SharedPrefStorageImpl implements SharedPrefStorage {
   Future<Either<Failure, int>> getInt({required String key}) async {
     try {
       var result = storage.getInt(key);
-      if (result == null) return Left(LocalStorageFailure(errorMessage: unknownError));
+      if (result == null) return Left(LocalStorageFailure(errorMessage: kunknownError));
       return Right(result);
     } catch (e) {
       log(e.toString());
-      return Left(LocalStorageFailure(errorMessage: unknownError));
+      return Left(LocalStorageFailure(errorMessage: kunknownError));
     }
   }
 
@@ -186,11 +186,11 @@ class SharedPrefStorageImpl implements SharedPrefStorage {
   Future<Either<Failure, String>> getString({required String key}) async {
     try {
       var result = storage.getString(key);
-      if (result == null) return Left(LocalStorageFailure(errorMessage: unknownError));
+      if (result == null) return Left(LocalStorageFailure(errorMessage: kunknownError));
       return Right(result);
     } catch (e) {
       log(e.toString());
-      return Left(LocalStorageFailure(errorMessage: unknownError));
+      return Left(LocalStorageFailure(errorMessage: kunknownError));
     }
   }
 

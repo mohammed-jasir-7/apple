@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 import '../models/template_model.dart';
 class SharedPreferences{}
 abstract class TemplateLocalDataSource {

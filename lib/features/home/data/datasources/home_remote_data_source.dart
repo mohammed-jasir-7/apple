@@ -10,7 +10,6 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 
-
 abstract class HomeRemoteDataSource {
   Future<ProductsModel> getProducts();
 }

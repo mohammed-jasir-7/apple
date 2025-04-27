@@ -17,8 +17,11 @@ class _SkeletonMobileState extends State<SkeletonMobile> {
   final ValueNotifier<int> _selectedIndex = ValueNotifier(0);
   final PageController _pageController = PageController(initialPage: 0);
   void _onItemTapped(int index) {
+    
     _pageController.jumpToPage(index); // Jump to the selected page
-    _selectedIndex.value = index;
+      _selectedIndex.value = index;
+      
+    
   }
 
   @override
@@ -104,7 +107,6 @@ class _SkeletonMobileState extends State<SkeletonMobile> {
       ),
     );
   }
-
   @override
   void dispose() {
     _pageController.dispose();

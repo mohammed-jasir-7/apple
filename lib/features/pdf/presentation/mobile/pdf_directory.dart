@@ -68,7 +68,7 @@ class _PdfDirectoryState extends State<PdfDirectory> {
 class DocumentCard extends StatelessWidget {
   final Document document;
   
-  const DocumentCard({super.key, required this.document});
+  const DocumentCard({required this.document});
 
   @override
   Widget build(BuildContext context) {
